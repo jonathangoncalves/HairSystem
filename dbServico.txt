@@ -1,0 +1,4 @@
+1;CM;Corte Masculino;
+3;UM;Unha da Mao;
+4;UP;Unha do Pé;
+5;BAR;Barbeiro;
