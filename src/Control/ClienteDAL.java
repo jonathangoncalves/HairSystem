@@ -1,12 +1,12 @@
 package Control;
 
+import Others.Lista;
 import Entity.Cliente;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 public class ClienteDAL {
     private final String fileName = "dbCliente.txt";
@@ -14,7 +14,7 @@ public class ClienteDAL {
     public void add(Cliente item){
         item.setIdCliente(this.getNewId());
         
-        ArrayList<Cliente> lstCliente;
+        Lista<Cliente> lstCliente;
         lstCliente = this.getList();
         lstCliente.add(item);
         
@@ -22,7 +22,7 @@ public class ClienteDAL {
     }
     
     public void update(Cliente item){
-        ArrayList<Cliente> lstCliente;
+        Lista<Cliente> lstCliente;
         lstCliente = this.getList();
         
         for(int i = 0; i < lstCliente.size(); i++){
@@ -35,7 +35,7 @@ public class ClienteDAL {
     }
     
     public void remove(int idCliente){
-        ArrayList<Cliente> lstCliente;
+        Lista<Cliente> lstCliente;
         lstCliente = this.getList();
         
         for(int i = 0; i < lstCliente.size(); i++){
@@ -47,7 +47,7 @@ public class ClienteDAL {
         saveList(lstCliente);
     }
     
-    private void saveList(ArrayList<Cliente> lstCliente){
+    private void saveList(Lista<Cliente> lstCliente){
         try(PrintWriter pwArquivo = new PrintWriter(new FileWriter(this.fileName))){
             for (Cliente itemSave : lstCliente){
                 pwArquivo.println(itemSave.toStringSave()); 
@@ -60,12 +60,12 @@ public class ClienteDAL {
         return this.getList(new Cliente(idCliente)).get(0);
     }
     
-    public ArrayList<Cliente> getList(){
+    public Lista<Cliente> getList(){
         return this.getList(new Cliente());
     }
     
-    public ArrayList<Cliente> getList(Cliente itemSearch){
-        ArrayList<Cliente> lstCliente = new ArrayList<Cliente>();
+    public Lista<Cliente> getList(Cliente itemSearch){
+        Lista<Cliente> lstCliente = new Lista<Cliente>();
         
         try(BufferedReader brArquivo = new BufferedReader(new FileReader(this.fileName))){
             String stLinha = brArquivo.readLine();
@@ -93,7 +93,7 @@ public class ClienteDAL {
         }catch(IOException ex){
         }
         
-        ArrayList<Cliente> lstClienteRetorno = new ArrayList<Cliente>();
+        Lista<Cliente> lstClienteRetorno = new Lista<Cliente>();
         if(itemSearch.getNmCliente() != null){
             for(int i = 0; i < lstCliente.size(); i++){
                 Cliente item = lstCliente.get(i);
@@ -118,7 +118,7 @@ public class ClienteDAL {
     }
     
     private int getNewId(){
-        ArrayList<Cliente> lstCliente;
+        Lista<Cliente> lstCliente;
         lstCliente = this.getList();
         
         int idMax = 0;

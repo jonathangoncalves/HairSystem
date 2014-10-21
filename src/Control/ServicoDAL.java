@@ -1,12 +1,13 @@
 package Control;
 
+import Others.Lista;
 import Entity.Servico;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class ServicoDAL {
     private final String fileName = "dbServico.txt";
@@ -14,7 +15,7 @@ public class ServicoDAL {
     public void add(Servico item){
         item.setIdServico(this.getNewId());
         
-        ArrayList<Servico> lstServico;
+        Lista<Servico> lstServico;
         lstServico = this.getList();
         lstServico.add(item);
         
@@ -22,7 +23,7 @@ public class ServicoDAL {
     }
     
     public void update(Servico item){
-        ArrayList<Servico> lstServico;
+        Lista<Servico> lstServico;
         lstServico = this.getList();
         
         for(int i = 0; i < lstServico.size(); i++){
@@ -35,7 +36,7 @@ public class ServicoDAL {
     }
     
     public void remove(int idServico){
-        ArrayList<Servico> lstServico;
+        Lista<Servico> lstServico;
         lstServico = this.getList();
         
         for(int i = 0; i < lstServico.size(); i++){
@@ -47,7 +48,7 @@ public class ServicoDAL {
         saveList(lstServico);
     }
     
-    private void saveList(ArrayList<Servico> lstServico){
+    private void saveList(Lista<Servico> lstServico){
         try(PrintWriter pwArquivo = new PrintWriter(new FileWriter(this.fileName))){
             for (Servico itemSave : lstServico){
                 pwArquivo.println(itemSave.toStringSave()); 
@@ -60,12 +61,12 @@ public class ServicoDAL {
         return this.getList(new Servico(idServico)).get(0);
     }
     
-    public ArrayList<Servico> getList(){
+    public Lista<Servico> getList(){
         return this.getList(new Servico());
     }
     
-    public ArrayList<Servico> getList(Servico itemSearch){
-        ArrayList<Servico> lstServico = new ArrayList<Servico>();
+    public Lista<Servico> getList(Servico itemSearch){
+        Lista<Servico> lstServico = new Lista<Servico>();
         
         try(BufferedReader brArquivo = new BufferedReader(new FileReader(this.fileName))){
             String stLinha = brArquivo.readLine();
@@ -85,7 +86,7 @@ public class ServicoDAL {
         }catch(IOException ex){
         }
         
-        ArrayList<Servico> lstServicoRetorno = new ArrayList<Servico>();
+        Lista<Servico> lstServicoRetorno = new Lista<Servico>();
         if(itemSearch.getNmServico() != null){
             for(int i = 0; i < lstServico.size(); i++){
                 Servico item = lstServico.get(i);
@@ -119,7 +120,7 @@ public class ServicoDAL {
     }
     
     private int getNewId(){
-        ArrayList<Servico> lstServico;
+        Lista<Servico> lstServico;
         lstServico = this.getList();
         
         int idMax = 0;

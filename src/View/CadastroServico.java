@@ -1,10 +1,11 @@
 package View;
 
+import Others.Lista;
 import Control.FuncionarioDAL;
 import Control.ServicoDAL;
 import Entity.Funcionario;
 import Entity.Servico;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JFormattedTextField;
@@ -258,7 +259,7 @@ public class CadastroServico extends javax.swing.JPanel {
                 }
             };
             
-            ArrayList<Servico> lstServico = new ServicoDAL().getList(new Servico(tfNomePesquisa.getText().trim()));
+            Lista<Servico> lstServico = new ServicoDAL().getList(new Servico(tfNomePesquisa.getText().trim()));
 
             for (int i = 0; i < lstServico.size(); i++) {
                 Object[] data = {lstServico.get(i).getIdServico(), lstServico.get(i).getNmServico(), lstServico.get(i).getNmSigla()};
@@ -312,7 +313,7 @@ public class CadastroServico extends javax.swing.JPanel {
                 int idServico = Integer.parseInt(tbServico.getValueAt(tbServico.getSelectedRow(), 0).toString());
                 
                 Boolean permitirExclusao = true;
-                ArrayList<Funcionario> lstFuncionario = new FuncionarioDAL().getList();
+                Lista<Funcionario> lstFuncionario = new FuncionarioDAL().getList();
                 for (Funcionario item : lstFuncionario) {
                     for (Servico itemServico : item.getLstServico()) {    
                         if(itemServico.getIdServico() == idServico)

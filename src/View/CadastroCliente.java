@@ -1,8 +1,9 @@
 package View;
 
+import Others.Lista;
 import Control.ClienteDAL;
 import Entity.Cliente;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
@@ -58,7 +59,7 @@ public class CadastroCliente extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(680, 366));
 
-        jpCadastroCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro / Edição de cliente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, null, new java.awt.Color(0, 0, 0)));
+        jpCadastroCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro / Edição de cliente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
 
         lbNomeCadastro.setText("Nome");
 
@@ -257,7 +258,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                     .addComponent(btLimpar)))
         );
 
-        jpPesquisaCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa Cliente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, null, new java.awt.Color(0, 0, 0)));
+        jpPesquisaCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa Cliente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
         jpPesquisaCliente.setPreferredSize(new java.awt.Dimension(399, 519));
 
         tbCliente.setModel(new javax.swing.table.DefaultTableModel(
@@ -276,7 +277,6 @@ public class CadastroCliente extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tbCliente.setColumnSelectionAllowed(true);
         tbCliente.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbCliente.getTableHeader().setReorderingAllowed(false);
         spCliente.setViewportView(tbCliente);
@@ -418,7 +418,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                 }
             };
             
-            ArrayList<Cliente> lstCliente = new ClienteDAL().getList(new Cliente(tfNomePesquisa.getText().trim()));
+            Lista<Cliente> lstCliente = new ClienteDAL().getList(new Cliente(tfNomePesquisa.getText().trim()));
 
             for (int i = 0; i < lstCliente.size(); i++) {
                 Cliente item = lstCliente.get(i);

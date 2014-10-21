@@ -1,5 +1,6 @@
 package Control;
 
+import Others.Lista;
 import Entity.CargaHoraria;
 import Entity.Dia;
 import Entity.Funcionario;
@@ -10,7 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class FuncionarioDAL {
     private final String fileName = "dbFuncionario.txt";
@@ -18,7 +19,7 @@ public class FuncionarioDAL {
     public void add(Funcionario item){
         item.setIdFuncionario(this.getNewId());
         
-        ArrayList<Funcionario> lstFuncionario;
+        Lista<Funcionario> lstFuncionario;
         lstFuncionario = this.getList();
         lstFuncionario.add(item);
         
@@ -26,7 +27,7 @@ public class FuncionarioDAL {
     }
     
     public void update(Funcionario item){
-        ArrayList<Funcionario> lstFuncionario;
+        Lista<Funcionario> lstFuncionario;
         lstFuncionario = this.getList();
         
         for(int i = 0; i < lstFuncionario.size(); i++){
@@ -39,7 +40,7 @@ public class FuncionarioDAL {
     }
     
     public void remove(int idFuncionario){
-        ArrayList<Funcionario> lstFuncionario;
+        Lista<Funcionario> lstFuncionario;
         lstFuncionario = this.getList();
         
         for(int i = 0; i < lstFuncionario.size(); i++){
@@ -51,7 +52,7 @@ public class FuncionarioDAL {
         saveList(lstFuncionario);
     }
     
-    private void saveList(ArrayList<Funcionario> lstFuncionario){
+    private void saveList(Lista<Funcionario> lstFuncionario){
         try(PrintWriter pwArquivo = new PrintWriter(new FileWriter(this.fileName))){
             for (Funcionario itemSave : lstFuncionario){
                 pwArquivo.println(itemSave.toStringSave()); 
@@ -64,12 +65,12 @@ public class FuncionarioDAL {
         return this.getList(new Funcionario(idFuncionario)).get(0);
     }
     
-    public ArrayList<Funcionario> getList(){
+    public Lista<Funcionario> getList(){
         return this.getList(new Funcionario());
     }
     
-    public ArrayList<Funcionario> getList(Funcionario itemSearch){
-        ArrayList<Funcionario> lstFuncionario = new ArrayList<Funcionario>();
+    public Lista<Funcionario> getList(Funcionario itemSearch){
+        Lista<Funcionario> lstFuncionario = new Lista<Funcionario>();
         
         try(BufferedReader brArquivo = new BufferedReader(new FileReader(this.fileName))){
             String stLinha = brArquivo.readLine();
@@ -82,7 +83,7 @@ public class FuncionarioDAL {
                 item.setNmFuncionario(itemSplit[1]);
                 
                 String[] itemServicos = itemSplit[2].split("-");
-                ArrayList<Servico> lstServico = new ArrayList<Servico>();
+                Lista<Servico> lstServico = new Lista<Servico>();
                 for (String idServico : itemServicos) {
                     lstServico.add(new ServicoDAL().getItem(Integer.parseInt(idServico)));
                 }
@@ -90,14 +91,14 @@ public class FuncionarioDAL {
                 item.setLstServico(lstServico);
                 
                 String[] itemLstCargaHoraria = itemSplit[3].split(",");
-                ArrayList<CargaHoraria> lstCargaHoraria = new ArrayList<CargaHoraria>();
+                Lista<CargaHoraria> lstCargaHoraria = new Lista<CargaHoraria>();
                 for (String itemCargaHoraria : itemLstCargaHoraria) {
                     String[] itemCarga = itemCargaHoraria.split("/");
                     CargaHoraria obCargaHoraria = new CargaHoraria();
                     
                     String[] itemLstDias = itemCarga[0].split("-");
 
-                    ArrayList<Dia> lstDias = new ArrayList<Dia>();
+                    Lista<Dia> lstDias = new Lista<Dia>();
                     for (String itemDias : itemLstDias) {
                         lstDias.add(new Dia(Integer.parseInt(itemDias)));
                     }
@@ -122,7 +123,7 @@ public class FuncionarioDAL {
         }catch(IOException ex){
         }
         
-        ArrayList<Funcionario> lstServicoRetorno = new ArrayList<Funcionario>();
+        Lista<Funcionario> lstServicoRetorno = new Lista<Funcionario>();
         if(itemSearch.getNmFuncionario()!= null){
             for(int i = 0; i < lstFuncionario.size(); i++){
                 Funcionario item = lstFuncionario.get(i);
@@ -147,7 +148,7 @@ public class FuncionarioDAL {
     }
     
     private int getNewId(){
-        ArrayList<Funcionario> lstServico;
+        Lista<Funcionario> lstServico;
         lstServico = this.getList();
         
         int idMax = 0;

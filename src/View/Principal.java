@@ -38,13 +38,12 @@ public class Principal extends javax.swing.JFrame {
         jpFuncionario = new View.CadastroFuncionario();
         jpServico = new View.CadastroServico();
         jpCliente = new View.CadastroCliente();
-        jpAgendamento = new View.CadastroAgendamento();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HairSystem");
         setResizable(false);
 
-        jpMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Menu", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, null, new java.awt.Color(0, 0, 0)));
+        jpMenu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Menu", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
 
         btAgendamento.setText("Agendamento");
         btAgendamento.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +114,6 @@ public class Principal extends javax.swing.JFrame {
         jpAtual.add(jpFuncionario, "cdFuncionario");
         jpAtual.add(jpServico, "cdServico");
         jpAtual.add(jpCliente, "cdCliente");
-        jpAtual.add(jpAgendamento, "cdAgendamento");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,7 +122,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jpMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpAtual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -196,7 +194,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btFuncionario;
     private javax.swing.JButton btSair;
     private javax.swing.JButton btServico;
-    private View.CadastroAgendamento jpAgendamento;
     private javax.swing.JPanel jpAtual;
     private View.CadastroCliente jpCliente;
     private View.CadastroFuncionario jpFuncionario;

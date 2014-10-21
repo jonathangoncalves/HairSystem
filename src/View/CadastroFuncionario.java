@@ -1,5 +1,6 @@
 package View;
 
+import Others.Lista;
 import Control.FuncionarioDAL;
 import Control.ServicoDAL;
 import Entity.Servico;
@@ -7,7 +8,6 @@ import Entity.CargaHoraria;
 import Entity.Dia;
 import Entity.Funcionario;
 import Entity.Horario;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
@@ -17,12 +17,12 @@ import javax.swing.table.DefaultTableModel;
 public class CadastroFuncionario extends javax.swing.JPanel {
 
     private Funcionario itemUpdate;
-    private ArrayList<CargaHoraria> lstCargaHoraria;
+    private Lista<CargaHoraria> lstCargaHoraria;
     
     public CadastroFuncionario() {
         initComponents();
         
-        lstCargaHoraria = new ArrayList<CargaHoraria>();
+        lstCargaHoraria = new Lista<CargaHoraria>();
     }
 
     @SuppressWarnings("unchecked")
@@ -413,7 +413,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         String validacao = validarCadastro();
         if(validacao.length() == 0){
-            ArrayList<Servico> lstServico = new ArrayList<Servico>();
+            Lista<Servico> lstServico = new Lista<Servico>();
             for(Object item : ltServicoPrestado.getSelectedValues()){
                 lstServico.add((Servico)item);
             }
@@ -480,7 +480,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 }
             };
             
-            ArrayList<Funcionario> lstFuncionario = new FuncionarioDAL().getList(new Funcionario(tfNomePesquisa.getText().trim()));
+            Lista<Funcionario> lstFuncionario = new FuncionarioDAL().getList(new Funcionario(tfNomePesquisa.getText().trim()));
 
             for (int i = 0; i < lstFuncionario.size(); i++) {
                 Funcionario item = lstFuncionario.get(i);
@@ -552,8 +552,8 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         carregarServicoPrestado();
         carregarCargaHoraria();
         
-        ArrayList<Servico> lstServico = new ServicoDAL().getList();
-        ArrayList<Integer> lstIndices = new ArrayList<Integer>();
+        Lista<Servico> lstServico = new ServicoDAL().getList();
+        Lista<Integer> lstIndices = new Lista<Integer>();
         for(int i = 0; i < lstServico.size(); i++){
             for(int a = 0; a < item.getLstServico().size(); a++){    
                 if (lstServico.get(i).getIdServico() == item.getLstServico().get(a).getIdServico()) {
@@ -572,7 +572,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     
     public void limparCadastro(){
         tfNomeCadastro.setText("");
-        lstCargaHoraria = new ArrayList<CargaHoraria>();
+        lstCargaHoraria = new Lista<CargaHoraria>();
 
         carregarServicoPrestado();
         carregarCargaHoraria();
@@ -596,7 +596,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     }
     
     public CargaHoraria criarCargaHoraria(){
-        ArrayList<Dia> lstDias = new ArrayList<Dia>();
+        Lista<Dia> lstDias = new Lista<Dia>();
         if(cbSegunda.isSelected())
             lstDias.add(new Dia(Dia.SEGUNDA));
         if(cbTerca.isSelected())
@@ -644,7 +644,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     }
     
     public void carregarServicoPrestado(){
-        ArrayList<Servico> lstServico = new ServicoDAL().getList();
+        Lista<Servico> lstServico = new ServicoDAL().getList();
         
         DefaultListModel modelList = new DefaultListModel();  
 

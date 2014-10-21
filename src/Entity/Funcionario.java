@@ -1,13 +1,13 @@
 package Entity;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+import Others.Lista;
 
 public class Funcionario {
     private int idFuncionario;
     private String nmFuncionario;
-    private ArrayList<Servico> lstServico;
-    private ArrayList<CargaHoraria> lstCargaHoraria;
+    private Lista<Servico> lstServico;
+    private Lista<CargaHoraria> lstCargaHoraria;
 
     public Funcionario() {
     }
@@ -20,7 +20,7 @@ public class Funcionario {
         this.nmFuncionario = nmFuncionario;
     }
     
-    public Funcionario(int idFuncionario, String nmFuncionario, ArrayList<Servico> lstServico, ArrayList<CargaHoraria> lstCargaHoraria) {
+    public Funcionario(int idFuncionario, String nmFuncionario, Lista<Servico> lstServico, Lista<CargaHoraria> lstCargaHoraria) {
         this.idFuncionario = idFuncionario;
         this.nmFuncionario = nmFuncionario;
         this.lstServico = lstServico;
@@ -43,19 +43,19 @@ public class Funcionario {
         this.nmFuncionario = nmFuncionario;
     }
 
-    public List<Servico> getLstServico() {
+    public Lista<Servico> getLstServico() {
         return lstServico;
     }
 
-    public void setLstServico(ArrayList<Servico> lstServico) {
+    public void setLstServico(Lista<Servico> lstServico) {
         this.lstServico = lstServico;
     }
 
-    public ArrayList<CargaHoraria> getLstCargaHoraria() {
+    public Lista<CargaHoraria> getLstCargaHoraria() {
         return lstCargaHoraria;
     }
 
-    public void setLstCargaHoraria(ArrayList<CargaHoraria> lstCargaHoraria) {
+    public void setLstCargaHoraria(Lista<CargaHoraria> lstCargaHoraria) {
         this.lstCargaHoraria = lstCargaHoraria;
     }
     

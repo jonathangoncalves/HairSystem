@@ -1,27 +1,26 @@
 package Entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import Others.Lista;
 
 public class CargaHoraria {
-    private List<Dia> lstDias;
+    private Lista<Dia> lstDias;
     private Horario hoInicio;
     private Horario hoFinal;
 
     public CargaHoraria() {
     }
  
-    public CargaHoraria(List<Dia> lstDias, Horario hoInicio, Horario hoFinal) {
+    public CargaHoraria(Lista<Dia> lstDias, Horario hoInicio, Horario hoFinal) {
         this.lstDias = lstDias;
         this.hoInicio = hoInicio;
         this.hoFinal = hoFinal;
     }
     
-    public List<Dia> getLstDias() {
+    public Lista<Dia> getLstDias() {
         return lstDias;
     }
 
-    public void setLstDias(List<Dia> lstDias) {
+    public void setLstDias(Lista<Dia> lstDias) {
         this.lstDias = lstDias;
     }
 
@@ -65,7 +64,7 @@ public class CargaHoraria {
         return sb.toString();
     }
     
-    public Boolean haConflito(ArrayList<CargaHoraria> lstCargaHoraria){
+    public Boolean haConflito(Lista<CargaHoraria> lstCargaHoraria){
         Boolean blConflito = false;
         
         for(Dia item : lstDias){
